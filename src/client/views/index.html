@@ -22,15 +22,33 @@
           <h2>Give it a shot! Submit a URL and see what the Aylian API can understand from it.</h2>
 
             <section>
-                <form class="" onsubmit="return handleSubmit(event)">
+                <form class="" onsubmit="return Client.handleSubmit(event)">
                     <input id="name" type="text" name="input" value="" onblur="onBlur()" placeholder="URL">
-                    <input type="submit" URL="" value="submit" onclick="return handleSubmit(event)" onsubmit="return handleSubmit(event)">
+                    <input type="submit" URL="" value="submit" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
                 </form>
+                <p id ="error"></p>
             <section>
 
             <section>
-                <strong>Form Results:</strong>
-                <div id="results"></div>
+                <h3>Form Results:</h3>
+                <div id="results">
+                                      <ul>
+                                          <li>
+                                              <h3>Text Polarity:</h3>
+                                              <p id="polarity"></p>
+                                          </li>
+
+                                          <li>
+                                              <h3>Text Subjectivity:</h3>
+                                              <p id="subjectivity"></p>
+                                          </li>
+
+                                          <h3>Summarization:</h3>
+                                          <p id="summarize"></p>
+                                      </ul>
+                                  </section>
+                </div>
+
             </section>
         </main>
 
