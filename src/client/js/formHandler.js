@@ -4,25 +4,26 @@ function handleSubmit(event) {
     // check what text was put into the form field
     let formText = document.getElementById('name').value
     var validUrl = require('valid-url');
+    Client.checkForName(handleSubmit);
 
     console.log("::: Form Submitted :::");
 
     if (validUrl.isUri(formText)) {
-      fetch('/evaluate', {
+      fetch('http://localhost:8080/evaluate', {
             method: 'POST',
             mode: 'cors',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({text: input_url[0].value})
+            body: JSON.stringify({text: formText})
         })
         .then(res => res.json())
 
           //HTML results
         .then(function(res) {
                   document.getElementById("polarity").innerHTML = JSON.stringify(res.polarity);
-                  document.getElementById("subjectivity").innerHTML = JSON.stringify(res.subjectivity);
-                  document.getElementById("summarize").innerHTML = JSON.stringify(res.summarize);
+                  document.getElementById("pConfidence").innerHTML = JSON.stringify(res.polarity_confidence);
+
                 console.log(res);
                 })
 

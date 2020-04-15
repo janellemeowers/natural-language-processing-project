@@ -19,7 +19,7 @@
         <main>
 
 
-          <h2>Give it a shot! Submit a URL and see what the Aylian API can understand from it.</h2>
+          <h2>Give it a shot! Submit an article URL and see whether Aylian deems it a positive or negative article.</h2>
 
             <section>
                 <form class="" onsubmit="return Client.handleSubmit(event)">
@@ -35,16 +35,16 @@
                                       <ul>
                                           <li>
                                               <h3>Text Polarity:</h3>
+                                              <i>Is the tone positive, neutral or negative?</i>
                                               <p id="polarity"></p>
                                           </li>
 
                                           <li>
-                                              <h3>Text Subjectivity:</h3>
-                                              <p id="subjectivity"></p>
-                                          </li>
+                                              <h3>Polarity Confidence:</h3>
+                                              <i>The confidence of the prediction</i>
+                                              <p id="pConfidence"></p>
+                                              </li>
 
-                                          <h3>Summarization:</h3>
-                                          <p id="summarize"></p>
                                       </ul>
                                   </section>
                 </div>
@@ -56,5 +56,14 @@
             <p>Janelle Myers 2020 </p>
         </footer>
 
+        <script>
+            // Check that service workers are supported
+            if ('serviceWorker' in navigator) {
+                // Use the window load event to keep the page load performant
+                window.addEventListener('load', () => {
+                    navigator.serviceWorker.register('/service-worker.js');
+                });
+            }
+        </script>
     </body>
 </html>
