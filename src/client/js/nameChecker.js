@@ -1,16 +1,16 @@
-function checkForName(inputText) {
-    console.log("::: Running checkForName :::", inputText);
-    let names = [
-        "Picard",
-        "Janeway",
-        "Kirk",
-        "Archer",
-        "Georgiou"
-    ]
+function checkForUrl(inputUrl) {
+    console.log("::: Running checkForURL :::", inputUrl);
 
-    if(names.includes(inputText)) {
-        alert("Welcome, Captain!")
-    }
-}
 
-export { checkForName }
+    var urlreg=/(([\w]+:)?\/\/)?(([\d\w]|%[a-fA-f\d]{2,2})+(:([\d\w]|%[a-fA-f\d]{2,2})+)?@)?([\d\w][-\d\w]{0,253}[\d\w]\.)+[\w]{2,63}(:[\d]+)?(\/([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)*(\?(&?([-+_~.\d\w]|%[a-fA-f\d]{2,2})=?)*)?(#([-+_~.\d\w]|%[a-fA-f\d]{2,2})*)?/;
+
+    if(urlreg.test(inputUrl)){
+          return true;
+      }
+
+      return false;
+
+
+ }
+
+export { checkForUrl }

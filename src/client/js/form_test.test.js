@@ -1,26 +1,44 @@
 import { handleSubmit } from "./formHandler.js";
 
+// adds the 'fetchMock' global variable
+global.fetch = require("jest-fetch-mock");
 
-describe("handleSubmit", () => {
-  test("handleSubmit' takes fetch request and data from the server, parses data to update HTML with response", () => {
-    document.body.innerHTML = `
-      <form id="main-form">
-          <input id="name" type="text" placeholder="URL" required>
-        <input type="submit" URL="" value="submit">
-      </form>
-      <section>
-        <div id="results"></div>
-      </section>
-    `;
-    const url = document.querySelector("#name");
-    const submitBtn = document.querySelector("input[type=submit]");
-    const resultsSection= document.querySelector("#results");
+describe('handleSubmit test', () => {
+    it('handleSubmit submits data from fetch request', () => {
+        document.body.innerHTML = `<main>
+                <section>
+                    <form class="" onsubmit="return Client.handleSubmit(event)">
+                        <input id="name" type="text" name="input" value="https://www.google.com/" onblur="onBlur()" placeholder="URL">
+                        <input type="submit" URL="" value="submit" required="required" onclick="return Client.handleSubmit(event)" onsubmit="return Client.handleSubmit(event)">
+                    </form>
+                    <p id ="error"></p>
+                <section>
 
-    url.value = "http://example.com";
-    handleSubmit(url.value, submitBtn, resultsSection).then(() => {
-      expect(submitBtn.value).toBe("submit");
-      expect(resultsSection.innerHTML).toEqual("<p>Polarity: positive</p><p>Polarity Confidence: number</p>")
+                <section>
+                    <h3>Form Results:</h3>
+                    <div id="results">
+                                          <ul>
+                                              <li>
+                                                  <h3>Text Polarity:</h3>
+                                                  <i>Is the tone positive, neutral or negative?</i>
+                                                  <p id="polarity"></p>
+                                              </li>
+
+                                              <li>
+                                                  <h3>Polarity Confidence:</h3>
+                                                  <i>The confidence of the prediction</i>
+                                                  <p id="pConfidence"></p>
+                                                  </li>
+
+                                          </ul>
+                                      </section>
+            </main>`;
+
+
+        fetch.mockResponseOnce(JSON.stringify({ text: 'test' }));
+        handleSubmit({ preventDefault: () => {} });
+
+        expect(fetch.mock.calls.length).toEqual(1);
+
     })
-
-  });
 });
